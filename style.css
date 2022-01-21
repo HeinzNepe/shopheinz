@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+* {
+  color: #e8eaed;
+  background-color: #202124;
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  text-decoration: none;
+}
+
+#header {
+  padding: 0 2em 0 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100;
+  height: 3rem;
+  border-bottom: 1px solid #e8eaed;
+}
+#header #logo-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#header #buttons {
+  margin-right: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: fit-content5rem;
+}
+#header #buttons #aboutus-button {
+  margin: 0.5rem;
+}
+#header #buttons #products-button {
+  margin: 0.5rem;
+}
+
+/*# sourceMappingURL=style.css.map */
