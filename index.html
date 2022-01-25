@@ -17,16 +17,37 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    <section id="header">
-        <a id="logo-area" href="/">
-            <img src="/img/logo.png" height="40" style="padding-right: 1rem">
-            <h>ShopHeinz</h>
-        </a>
-        <div id="buttons">
-            <a id="aboutus-button" href="/about-us">About us</a>
-            <a id="products-button" href="/products">Products</a>
+
+<div id="header-pre"></div>
+
+<section id="content">
+    <img id="top-img" src="https://help.yessness.com/assets/images/MafiaClass.png"  width="100%" alt="Inspirational image of happy people">
+
+    <section id="cards">
+        <div class="Item-row" id="card1">
+            <div class="text-box">
+                <h1>Welcome!</h1>
+                <p>Welcome to shopheinz! This site is a project where i explore how to make databases that can handle orders, users and delivery. To make the connection to the database, im using an API that i wrote myself along with some friends.</p>
+                <br>
+                <p>Enjoy!</p>
+            </div>
+            <img src="/img/logo.png" width="128" alt="Logo">
+        </div>
+        <div class="Item-row" id="card2">
+            <div class="text-box">
+                <h1>Products</h1>
+                <p>The products i offer on this site will be grabbed from somewhere else and not really purchesable. For now, this entire site is just for me to test and prove to myself (and my teachers) that i can make this.</p>
+            </div>
+            <img src="/img/logo.png" width="128" alt="Logo">
         </div>
     </section>
 
+</section>
+
+<!-- Import JQuery -->
+<script crossorigin="anonymous" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Load Header -->
+<script>console.log("Header Loaded");$("#header-pre").load("/sections/header.html");</script>
 </body>
 </html>
