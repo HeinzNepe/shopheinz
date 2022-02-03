@@ -46,7 +46,7 @@ body {
   margin: 0.5rem;
 }
 
-#content {
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,15 +55,16 @@ body {
   padding: 0;
   margin: 0;
 }
-#content #top-img {
+
+#index #top-img {
   max-width: 1080px;
   margin: 1em;
 }
-#content #cards {
+#index #cards {
   margin: 0;
   width: 90%;
 }
-#content #cards .Item-row {
+#index #cards .Item-row {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -71,32 +72,32 @@ body {
   min-height: 20rem;
   padding: 2rem;
 }
-#content #cards .Item-row .text-box {
+#index #cards .Item-row .text-box {
   display: flex;
   flex-direction: column;
   max-width: 70ch;
 }
-#content #cards .Item-row .img {
+#index #cards .Item-row .img {
   width: 25%;
   padding: 2rem;
 }
-#content #cards #card1 {
+#index #cards #card1 {
   background-color: #202a2a;
   color: #e8eaed;
 }
-#content #cards #card2 {
+#index #cards #card2 {
   background-color: #272b34;
   color: #e8eaed;
 }
 
-#content #toptext {
+#products #toptext {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   max-width: 70ch;
 }
-#content #products-list {
+#products #products-list {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -105,25 +106,41 @@ body {
   align-items: center;
   justify-content: center;
 }
-#content #products-list .card {
+#products #products-list .card {
   background-color: #202a2a;
   width: 12rem;
-  height: 18rem;
+  height: fit-content2rem;
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  overflow: hidden;
 }
-#content #products-list .card h2 {
+#products #products-list .card h2 {
   margin: 0.3em 0 0 0;
 }
-#content #products-list .card p {
+#products #products-list .card p {
   margin: 0.2rem;
 }
-#content #products-list .card a {
+#products #products-list .card a {
   padding: 0.2rem;
   text-align: right;
   background-color: #272b34;
   color: #e8eaed;
+}
+
+#about-us #text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 70ch;
+}
+#about-us #text h1 {
+  align-self: center;
+}
+#about-us #text #purpose #link {
+  color: #e8eaed;
+  font-style: italic;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,25 +1,40 @@
-'<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ShopHeinz</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>ShopHeinz - About us</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
 
-    <!--Fonts-->
-    <style></style>
+    <!--Favicons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
 
-<section id="header">
-    <div id="logo-area">
-        <img src="/img/logo.png" height="40" style="padding-right: 1rem">
-        <h>ShopHeinz</h>
-    </div>
-    <div id="buttons">
-        <div id="aboutus-button">About us</div>
-        <div id="products-button">Products</div>
+<div id="header-pre"></div>
+
+<section class="content" id="about-us">
+    <div id="text">
+        <div id="purpose">
+            <h1>About us</h1>
+            <p>This is a store, made as a side project by me, <a id="link" href="https://github.com/HeinzNepe">Henrik Xavier Nepstad </a> to work on learning databases and API's. </p>
+            <br>
+            <p>I hope you enjoy the store!</p>
+        </div>
     </div>
 </section>
 
+<!-- Import JQuery -->
+<script crossorigin="anonymous" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Load Header -->
+<script>console.log("Header Loaded");$("#header-pre").load("/Sections/header.html");</script>
 </body>
 </html>

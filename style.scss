@@ -4,10 +4,11 @@
 // 1.2 Variables
 // 2  Reusable sections
 //  2.1 Header
+//  2.2 Flex for content
 // 3  Site content
 //  3.1 Index
 //  3.2 Products
-//
+//  3.3 About us
 //
 
 //================================
@@ -97,18 +98,23 @@ body
 }
 
 
+// 2.2 Flex for content
+.content
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+
 // 3.1 Index
-  #content
-  {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0;
-    margin:0;
 
 
+  #index {
     #top-img
     {
       max-width:1080px;
@@ -157,7 +163,7 @@ body
   }
 
 // 3.2 Products
-  #content
+  #products
   {
     #toptext
     {
@@ -181,10 +187,11 @@ body
       {
         background-color: $Card1-Background;
         width: 12rem;
-        height: 18rem;
+        height: fit-content + 2rem;
         display: flex;
         flex-direction: column;
         padding: 1rem;
+        overflow: hidden;
 
         h2
         {
@@ -200,6 +207,33 @@ body
           text-align: right;
           background-color:$Card2-Background;
           color: $Card1-Text;
+        }
+      }
+    }
+  }
+
+// 3.3 About Us
+
+  #about-us
+  {
+    #text
+    {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 70ch;
+
+      h1
+      {
+        align-self: center;
+      }
+      #purpose
+      {
+        #link
+        {
+          color:$Text-White;
+          font-style:italic;
         }
       }
     }
