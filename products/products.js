@@ -6,12 +6,14 @@ async function loadProducts()
     for (const product of products) {
         console.log(product)
         document.querySelector("#products-list").innerHTML += `
-            <div class="card">
-                <img src="${product.imageUrl}" width="192">
+            <div class="card rounded">
+                <img class="rounded" src="${product.imageUrl}" width="192" alt="${product.name}">
                 <h2>${product.name}</h2>
                 <p>${product.stock} på lager</p>
-                <i>${product.price} kr</i>
-                <a href="#">Order</a>
+                <div class="horizontal">
+                    <p><i>${product.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kr</i></p>
+                    <a href="#">Order</a>
+                </div>
             </div>
         `
     }

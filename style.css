@@ -10,6 +10,16 @@ body {
   background-color: #202124;
 }
 
+.rounded {
+  border-radius: 5%;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 #header {
   padding: 0 2em 0 2em;
   display: flex;
@@ -78,8 +88,9 @@ body {
   max-width: 70ch;
 }
 #index #cards .Item-row .img {
+  object-fit: cover;
   width: 25%;
-  padding: 2rem;
+  aspect-ratio: 1;
 }
 #index #cards #card1 {
   background-color: #202a2a;
@@ -107,12 +118,12 @@ body {
   justify-content: center;
 }
 #products #products-list .card {
-  background-color: #202a2a;
+  background-color: #c33e37;
   width: 12rem;
   height: fit-content2rem;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.75rem;
   overflow: hidden;
 }
 #products #products-list .card h2 {
@@ -123,8 +134,7 @@ body {
 }
 #products #products-list .card a {
   padding: 0.2rem;
-  text-align: right;
-  background-color: #272b34;
+  background-color: #c33e37;
   color: #e8eaed;
 }
 

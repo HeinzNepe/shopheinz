@@ -3,8 +3,9 @@
 // 1.1 Imports
 // 1.2 Variables
 // 2  Reusable sections
-//  2.1 Header
-//  2.2 Flex for content
+//  2.1 Utility classes
+//  2.2 Header
+//  2.3 Flex for content
 // 3  Site content
 //  3.1 Index
 //  3.2 Products
@@ -20,6 +21,9 @@
 $Text-White:#e8eaed;
 $Background-Gray:#202124;
 
+  // Universal
+    $Roundness: 5%;
+
   // Index
     // Card1
     $Card1-Background: #202a2a;
@@ -30,7 +34,7 @@ $Background-Gray:#202124;
 
   // Products listing
     // Dynamic cards
-    $Dynamic-Background: #272b34;
+    $Dynamic-Background: #c33e37;
     $Dynamic-Text:#e8eaed;
 
 *
@@ -46,8 +50,13 @@ body
   background-color: $Background-Gray;
 }
 
+// 2.1 Utility classes
 
-// 2.1 Header
+  .rounded{border-radius: $Roundness;}
+  .horizontal{display:flex;flex-direction:row;justify-content:space-between;}
+
+
+// 2.2 Header
 
 #header
 {
@@ -98,7 +107,7 @@ body
 }
 
 
-// 2.2 Flex for content
+// 2.3 Flex for content
 .content
 {
   display: flex;
@@ -143,8 +152,9 @@ body
         }
 
         .img {
-          width: 25%;
-          padding: 2rem;
+          object-fit:cover;
+          width:25%;
+          aspect-ratio:1;
         }
       }
       // Seperating the colours for the different cards
@@ -185,12 +195,12 @@ body
 
       .card
       {
-        background-color: $Card1-Background;
+        background-color: $Dynamic-Background;
         width: 12rem;
         height: fit-content + 2rem;
         display: flex;
         flex-direction: column;
-        padding: 1rem;
+        padding: .75rem;
         overflow: hidden;
 
         h2
@@ -204,9 +214,8 @@ body
         a
         {
           padding: 0.2rem;
-          text-align: right;
-          background-color:$Card2-Background;
-          color: $Card1-Text;
+          background-color:$Dynamic-Background;
+          color: $Dynamic-Text;
         }
       }
     }
