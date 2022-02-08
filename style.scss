@@ -10,6 +10,7 @@
 //  3.1 Index
 //  3.2 Products
 //  3.3 About us
+// 4  Profile related
 //
 
 //================================
@@ -54,6 +55,7 @@ body
 
   .rounded{border-radius: $Roundness;}
   .horizontal{display:flex;flex-direction:row;justify-content:space-between;}
+  .vertical{display:flex;flex-direction:column;justify-content:space-between;}
 
 
 // 2.2 Header
@@ -244,6 +246,57 @@ body
           color:$Text-White;
           font-style:italic;
         }
+      }
+    }
+  }
+
+
+
+
+//  4.1 Profile page
+  #profile-page
+  {
+    width: 100%;
+    #profile-sec
+    {
+      width: 100%;
+      #top-area
+      {
+        margin-top: 7rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+
+
+        #img-div
+        {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: left;
+          gap: 1rem;
+          width: fit-content;
+          margin-right: 50%;
+
+          .img
+          {
+            object-fit:cover;
+            width:25%;
+            aspect-ratio:1;
+            border-radius: 25%;
+          }
+        }
+      }
+      #bottom-area
+      {
+        margin: 5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 40%;
       }
     }
   }

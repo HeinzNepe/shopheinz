@@ -20,6 +20,12 @@ body {
   justify-content: space-between;
 }
 
+.vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 #header {
   padding: 0 2em 0 2em;
   display: flex;
@@ -151,6 +157,44 @@ body {
 #about-us #text #purpose #link {
   color: #e8eaed;
   font-style: italic;
+}
+
+#profile-page {
+  width: 100%;
+}
+#profile-page #profile-sec {
+  width: 100%;
+}
+#profile-page #profile-sec #top-area {
+  margin-top: 7rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+#profile-page #profile-sec #top-area #img-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 1rem;
+  width: fit-content;
+  margin-right: 50%;
+}
+#profile-page #profile-sec #top-area #img-div .img {
+  object-fit: cover;
+  width: 25%;
+  aspect-ratio: 1;
+  border-radius: 25%;
+}
+#profile-page #profile-sec #bottom-area {
+  margin: 5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 40%;
 }
 
 /*# sourceMappingURL=style.css.map */
