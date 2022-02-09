@@ -56,7 +56,7 @@ body
   .rounded{border-radius: $Roundness;}
   .horizontal{display:flex;flex-direction:row;justify-content:space-between;}
   .vertical{display:flex;flex-direction:column;justify-content:space-between;}
-
+  .center-text{text-align:center;}
 
 // 2.2 Header
 
@@ -257,6 +257,12 @@ body
   #profile-page
   {
     width: 100%;
+    #long
+    {
+      border-top: 1px solid $Text-White;
+      width:100%;
+      margin: 5rem auto 5rem auto;
+    }
     #profile-sec
     {
       width: 100%;
@@ -265,25 +271,27 @@ body
         margin-top: 7rem;
         width: 100%;
         display: flex;
+        justify-content: space-evenly;
         flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 25%;
+
+        .phantom{width: 29%}
 
 
         #img-div
         {
           display: flex;
+          margin:0;
           flex-direction: row;
           align-items: center;
-          justify-content: left;
-          gap: 1rem;
-          width: fit-content;
-          margin-right: 50%;
+          justify-content: start;
+          width: 29%;
 
           .img
           {
+            margin-right:2rem;
             object-fit:cover;
-            width:25%;
             aspect-ratio:1;
             border-radius: 25%;
           }
@@ -291,12 +299,50 @@ body
       }
       #bottom-area
       {
-        margin: 5rem;
         width: 100%;
         display: flex;
+        justify-content: space-evenly;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 40%;
+        gap: 25%;
+
+        div
+        {
+          width:29%;
+        }
       }
     }
+
+
+    #order-section
+    {
+      width: 100%;
+
+      hr
+      {
+        border-top: 1px solid $Text-White;
+        width:80%;
+        margin: 5rem auto 5rem auto;
+      }
+      .order
+      {
+        height: fit-content;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 25%;
+
+        div
+        {
+          align-items: center;
+          justify-content: center;
+          width:29%;
+          text-align:center;
+        }
+      }
+
+    }
+
   }
