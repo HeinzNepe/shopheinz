@@ -110,6 +110,17 @@ body
     {
       margin:0.5rem;
     }
+
+    #header-login-sec
+    {
+      img
+      {
+        object-fit:cover;
+        width:3rem;
+        aspect-ratio:1;
+        border-radius: $Rounderness;
+      }
+    }
   }
 }
 
@@ -316,7 +327,7 @@ body
             margin-right:2rem;
             object-fit:cover;
             aspect-ratio:1;
-            border-radius: 35%;
+            border-radius: $Roundness;
           }
         }
       }

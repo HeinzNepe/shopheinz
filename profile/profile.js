@@ -1,11 +1,13 @@
 const url = "https://api.topheinz.com:5000/"
 
-var uid = localStorage['uid']
+let token = localStorage['token']
 
 
 async function loadUser()
 {
-    const user = (await axios.get(url+`user/user?id=`+uid)).data;
+    const user = (await axios.get(url+`user/user?token=`+token)).data;
+
+    localStorage["uid"] = parseInt(user.id)
 
     document.querySelector("#img-div").innerHTML = `
                 <!--suppress CheckImageSize -->
@@ -40,7 +42,6 @@ async function loadProducts()
     const orders = (await axios.get( url+`order/user?id=`+uid)).data;
 
     for (const order of orders) {
-        console.log(order)
         document.querySelector("#order-section").innerHTML += `
             <div class="order">
             <div>
@@ -70,6 +71,7 @@ async function loadProducts()
     }
 }
 loadUser();
+var uid = localStorage["uid"]
 loadProducts();
 
 

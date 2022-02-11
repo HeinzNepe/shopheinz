@@ -74,6 +74,12 @@ body {
 #header #buttons #products-button {
   margin: 0.5rem;
 }
+#header #buttons #header-login-sec img {
+  object-fit: cover;
+  width: 3rem;
+  aspect-ratio: 1;
+  border-radius: 0.5rem;
+}
 
 .content {
   display: flex;
@@ -219,7 +225,7 @@ body {
   margin-right: 2rem;
   object-fit: cover;
   aspect-ratio: 1;
-  border-radius: 35%;
+  border-radius: 5%;
 }
 #profile-page #profile-sec #bottom-area {
   width: 100%;
