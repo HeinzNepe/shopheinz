@@ -1,7 +1,8 @@
+const url = "https://api.topheinz.com:5000/"
 
 async function loadProducts()
 {
-    const products = (await axios.get("https://api.topheinz.com:5000/products/all")).data;
+    const products = (await axios.get(url+`products/all`)).data;
 
     for (const product of products) {
         console.log(product)

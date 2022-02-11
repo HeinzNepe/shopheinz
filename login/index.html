@@ -20,8 +20,17 @@
 
 <div id="header-pre"></div>
 
-<section class="content" id="profile-page">
-
+<section class="content" id="login-page">
+    <h1>Login page</h1>
+    <div class="vertical" id="login-area">
+        <label>
+            <input id="username-input" placeholder="Username">
+        </label>
+        <label>
+            <input id="pass-input" placeholder="Password" type="password">
+        </label>
+        <button class="red-button" id="login-button">Login</button>
+    </div>
 
 </section>
 
@@ -34,6 +43,6 @@
 <!-- Load Header -->
 <script>console.log("Header Loaded");$("#header-pre").load("/Sections/header.html");</script>
 
-<script src="profile.js"></script>
+<script src="login.js"></script>
 </body>
 </html>
