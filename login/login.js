@@ -19,9 +19,15 @@ const url = "https://api.topheinz.com:5000/"
         // If result isn't empty, saves to localstorage
         if (result !== "") {
             localStorage["token"] = result
+            document.querySelector("#login-status").innerHTML=``
             console.log("Login success")
+            // noinspection JSVoidFunctionReturnValueUsed
+            setTimeout(window.location.replace("/"),1)
+
         }
         else {
+            document.querySelector("#login-status").innerHTML=`
+            <p>Login failed! Try again</p>`
             console.log("Login failed!")
         }
     }
