@@ -89,7 +89,6 @@ body
 
   #buttons
   {
-    margin-right:10%;
     display:flex;
     flex-direction: row;
     justify-content:space-between;
@@ -293,7 +292,7 @@ body
             margin-right:2rem;
             object-fit:cover;
             aspect-ratio:1;
-            border-radius: 25%;
+            border-radius: 35%;
           }
         }
       }
@@ -322,7 +321,7 @@ body
       {
         border-top: 1px solid $Text-White;
         width:80%;
-        margin: 5rem auto 5rem auto;
+        margin: 3rem auto 3rem auto;
       }
       .order
       {
