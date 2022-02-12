@@ -1,4 +1,4 @@
-const hurl = "https://api.topheinz.com:5000/"
+const hurl = "https://api.topheinz.com/"
 
 token = localStorage["token"];
 
