@@ -59,7 +59,7 @@ body
   .rounded{border-radius: $Roundness;}
   .horizontal{display:flex;flex-direction:row;justify-content:space-between;}
   .vertical{display:flex;flex-direction:column;justify-content:space-between;}
-  .center-text{text-align:center;}
+  .center-text{text-align:center;align-items: center;}
   .red-button{background: $Dynamic-Background;border: none;padding: .5rem 1rem;border-radius: $Rounderness;color: $Text-White;box-sizing: border-box;
 }
 
@@ -113,12 +113,15 @@ body
 
     #header-login-sec
     {
+      display: flex;
+      flex-direction: row;
       img
       {
         object-fit:cover;
         width:3rem;
         aspect-ratio:1;
         border-radius: $Rounderness;
+        margin-right: 1rem;
       }
     }
   }

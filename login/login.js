@@ -5,6 +5,7 @@ const url = "https://api.topheinz.com:5000/"
 //  Auth thing for getting token
     $("#login-button").click(auth)
 
+//  Gets value from the input fields
     async function auth(){
         username = document.querySelector("#username-input").value;
         passphrase = document.querySelector("#pass-input").value;

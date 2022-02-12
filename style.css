@@ -28,6 +28,7 @@ body {
 
 .center-text {
   text-align: center;
+  align-items: center;
 }
 
 .red-button {
@@ -74,11 +75,16 @@ body {
 #header #buttons #products-button {
   margin: 0.5rem;
 }
+#header #buttons #header-login-sec {
+  display: flex;
+  flex-direction: row;
+}
 #header #buttons #header-login-sec img {
   object-fit: cover;
   width: 3rem;
   aspect-ratio: 1;
   border-radius: 0.5rem;
+  margin-right: 1rem;
 }
 
 .content {

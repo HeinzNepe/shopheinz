@@ -2,42 +2,46 @@ const url = "https://api.topheinz.com:5000/"
 
 let token = localStorage['token']
 
-
+// Function loads the entire profile page.
 async function loadUser()
 {
+    // Gets user data and turns in into json
     const user = (await axios.get(url+`user/user?token=`+token)).data;
 
     var uid = parseInt(user.id)
     localStorage["uid"] = uid;
 
-    document.querySelector("#img-div").innerHTML = `
-                <!--suppress CheckImageSize -->
-                <img class="img" alt="ProfilePicture" width="100" src="${user.pfp}">
-                <div class="column" id="name">
-                    <h3>Username:</h3>
-                    <p id="id-input">${user.credentials.username}</p>
-                </div>`
+        //  Filling in HTML stuff
+        document.querySelector("#img-div").innerHTML = `
+                    <!--suppress CheckImageSize -->
+                    <img class="img" alt="ProfilePicture" width="100" src="${user.pfp}">
+                    <div class="column" id="name">
+                        <h3>Username:</h3>
+                        <p id="id-input">${user.credentials.username}</p>
+                    </div>`
 
-    document.querySelector("#bottom-area").innerHTML = `
-        <div>
-            <h3>Full name:</h3>
-            <p id="name-input">${user.firstName} ${user.lastName}</p>
-        </div>
-        <div>
-            <h3>Adress:</h3>
-            <p id="address-input">Coming soon</p>
-        </div>
-        <div>
-            <h3>Phone:</h3>
-            <p id="nmbr-input">${user.phoneNumber}</p>
-        </div>
-        <div>
-            <h3>E-post:</h3>
-            <p id="mail-input">${user.email}</p>
-        </div>`
+        document.querySelector("#bottom-area").innerHTML = `
+            <div>
+                <h3>Full name:</h3>
+                <p id="name-input">${user.firstName} ${user.lastName}</p>
+            </div>
+            <div>
+                <h3>Adress:</h3>
+                <p id="address-input">Coming soon</p>
+            </div>
+            <div>
+                <h3>Phone:</h3>
+                <p id="nmbr-input">${user.phoneNumber}</p>
+            </div>
+            <div>
+                <h3>E-post:</h3>
+                <p id="mail-input">${user.email}</p>
+            </div>`
 
+    // Gets recent orders from user into JSON
     const orders = (await axios.get( url+`order/user?id=`+uid)).data;
 
+    //  Recent orders displayed at bottom
     for (const order of orders) {
         document.querySelector("#order-section").innerHTML += `
             <div class="order">
@@ -68,7 +72,7 @@ async function loadUser()
     }
 }
 
-
+//Run function
 loadUser();
 
 
