@@ -7,7 +7,8 @@ async function loadUser()
 {
     const user = (await axios.get(url+`user/user?token=`+token)).data;
 
-    localStorage["uid"] = parseInt(user.id)
+    var uid = parseInt(user.id)
+    localStorage["uid"] = uid;
 
     document.querySelector("#img-div").innerHTML = `
                 <!--suppress CheckImageSize -->
@@ -34,11 +35,7 @@ async function loadUser()
             <h3>E-post:</h3>
             <p id="mail-input">${user.email}</p>
         </div>`
-}
 
-
-async function loadProducts()
-{
     const orders = (await axios.get( url+`order/user?id=`+uid)).data;
 
     for (const order of orders) {
@@ -70,9 +67,11 @@ async function loadProducts()
         `
     }
 }
+
+
 loadUser();
-var uid = localStorage["uid"]
-loadProducts();
+
+
 
 
 
