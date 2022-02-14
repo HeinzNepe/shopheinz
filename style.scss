@@ -287,6 +287,19 @@ body
       }
 
     }
+    #signup-area
+    {
+      margin:2rem;
+      gap:0.2rem;
+      label > input
+      {
+        color:$Faded-Text-White;
+        background-color: $Card2-Background;
+        border:$Card2-Background;
+        padding: 1rem;
+        border-radius: $Rounderness;
+      }
+    }
   }
 
 
