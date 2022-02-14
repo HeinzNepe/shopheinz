@@ -6,7 +6,13 @@ let token = localStorage['token']
 async function loadUser()
 {
     // Gets user data and turns in into json
-    const user = (await axios.get(url+`user/user?token=`+token)).data;
+    const user = ((await axios({
+        method: "get",
+        url: `${url}user/user`,
+        headers: {
+            token: token
+        }
+    })).data)
 
     var uid = parseInt(user.id)
     localStorage["uid"] = uid;

@@ -4,7 +4,13 @@ token = localStorage["token"];
 
 
 async function loadUser() {
-    const user = (await axios.get(hurl + `user/user?token=` + token)).data;
+    const user = ((await axios({
+        method: "get",
+        url: `${hurl}user/user`,
+        headers: {
+            token: token
+        }
+    })).data)
     document.querySelector("#header-login-sec").innerHTML = `
     <a href="/profile"><img id="header-pfp" src="${user.pfp}"></a>
     <a href="/" class="center-text" id="logout-button">Logout</a>

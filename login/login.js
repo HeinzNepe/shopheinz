@@ -39,10 +39,14 @@ else // Log in
             <input id="username-input" placeholder="Username">
         </label>
         <label>
-            <input id="pass-input" placeholder="Password" type="password">
+            <input id="password-input" placeholder="Password" type="password">
         </label>
         <button class="red-button" id="login-button">Login</button>
         <div id="login-status">
+        </div>
+        <br>
+        <div class="horizontal center-text" id="new-user">
+        <p>New user? Sign up </p><a href="?new">here</a>
         </div>
     </div>
     `
@@ -55,8 +59,8 @@ else // Log in
 
 //  Gets value from the input fields
     async function auth(){
-        let username = document.querySelector("#user-input").value;
-        let passphrase = document.querySelector("#pass-input").value;
+        let username = document.querySelector("#username-input").value;
+        let passphrase = document.querySelector("#password-input").value;
 
         const result = (await axios({
             method: "get",
@@ -89,10 +93,10 @@ else // Log in
     // Login sec
     $("#username-input").keyup(e =>
     {
-        if (e.keyCode === 13) $("#pass-input").focus();
+        if (e.keyCode === 13) $("#password-input").focus();
     });
 
-    $("#pass-input").keyup(e =>
+    $("#password-input").keyup(e =>
     {
         if (e.keyCode === 13) auth()
     });
@@ -141,18 +145,18 @@ else // Log in
     $("#signup-button").click(createUser)
 
     async function createUser(){
-        var firstname = document.querySelector("#firstname-input").value;
-        var lastname = document.querySelector("#lastname-input").value;
-        var user = document.querySelector("#user-input").value;
-        var email = document.querySelector("#email-input").value;
-        var phonenumber = document.querySelector("#number-input").value;
-        var pass = document.querySelector("#pass-input").value;
+        let firstname = document.querySelector("#firstname-input").value;
+        let lastname = document.querySelector("#lastname-input").value;
+        let user = document.querySelector("#user-input").value;
+        let email = document.querySelector("#email-input").value;
+        let phonenumber = document.querySelector("#number-input").value;
+        let pass = document.querySelector("#pass-input").value;
 
         try {
-            console.log("1")
+
             const createResult  = (await axios({
                 method: 'post',
-                url: 'https://api.topheinz.com/user/create',
+                url: `${url}user/create`,
                 headers: {
                     'firstName': firstname,
                     'lastName': lastname,
@@ -162,36 +166,38 @@ else // Log in
                     'pass': pass,
                     'pfp': "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
                 }
-            }).data);
+            })).data;
 
 
-            console.log("2")
+
             // Get user
             const getResult = (await axios({
                 method: "get",
-                url: `${api}/auth`,
+                url: `${url}auth`,
                 headers: {
                     user: user,
                     pass: pass
                 }
             })).data;
 
-            console.log("3")
             // Store success
             const success = createResult === true && getResult !== "";
             console.log(success ? "Account creation successful" : "Something went wrong");
+            console.log(createResult , getResult)
 
-            console.log("4")
             if (success)
             {
                 // Store user details
-                localStorage["user"] = JSON.stringify((await axios({
+                const user = ((await axios({
                     method: "get",
-                    url: `${url}users`,
+                    url: `${url}user/user`,
                     headers: {
                         token: getResult
                     }
-                })).data);
+                })).data)
+
+                localStorage["uid"] = parseInt(user.id)
+                localStorage["token"] = user.credentials.token
 
                 // Redirect to front page
                 window.location.replace("/");
@@ -199,9 +205,7 @@ else // Log in
 
             // Unsuccessful login
             else {
-                console.log("5");
                 document.querySelector("#incorrect").innerHTML = "Noe gikk galt";
-                console.log("6");
             }
 
 
