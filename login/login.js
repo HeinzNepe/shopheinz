@@ -1,12 +1,5 @@
 const url = "https://api.topheinz.com/"
 
-var firstname = "";
-var lastname = "";
-var user = "";
-var email = "";
-var phonenumber = "";
-var pass = "";
-var pfp = "";
 
 if (window.location.search === "?new") // Sign up
 {
@@ -32,10 +25,9 @@ if (window.location.search === "?new") // Sign up
         <label>
             <input id="pass-input" placeholder="Password" type="password">
         </label>
-        <label>
-            <input id="pass-input" placeholder="Password" type="password">
-        </label>
         <button class="red-button" id="signup-button">Login</button>
+        <div id="login-status">
+        </div>
     `
 }
 else // Log in
@@ -52,9 +44,6 @@ else // Log in
         <button class="red-button" id="login-button">Login</button>
         <div id="login-status">
         </div>
-
-        <div id="login-status">
-        </div>
     </div>
     `
 }
@@ -66,8 +55,9 @@ else // Log in
 
 //  Gets value from the input fields
     async function auth(){
-        username = document.querySelector("#username-input").value;
-        passphrase = document.querySelector("#pass-input").value;
+        let username = document.querySelector("#user-input").value;
+        let passphrase = document.querySelector("#pass-input").value;
+
         const result = (await axios({
             method: "get",
             url: `${url}auth`,
@@ -76,6 +66,7 @@ else // Log in
                 pass: passphrase
             }
         })).data;
+
         // If result isn't empty, saves to localstorage
         if (result !== "") {
             localStorage["token"] = result
@@ -92,7 +83,10 @@ else // Log in
         }
     }
 
+
+
 // Input field listeners
+    // Login sec
     $("#username-input").keyup(e =>
     {
         if (e.keyCode === 13) $("#pass-input").focus();
@@ -105,18 +99,115 @@ else // Log in
 
 
 
-//  Register User
+    // Signup sec
+    $("#firstname-input").keyup(e =>
+    {
+        if (e.keyCode === 13) $("#lastname-input").focus();
+    });
 
-    var config = {
-        method: 'post',
-        url: 'https://api.topheinz.com/user/create',
-        headers: {
-            'firstName': firstname ,
-            'lastName': lastname,
-            'username': user,
-            'email': email,
-            'phoneNumber': phonenumber,
-            'pass': pass,
-            'pfp': pfp
+    $("#lastname-input").keyup(e =>
+    {
+        if (e.keyCode === 13) $("#user-input").focus();
+    });
+
+    $("#user-input").keyup(e =>
+    {
+        if (e.keyCode === 13) $("#email-input").focus();
+    });
+
+    $("#email-input").keyup(e =>
+    {
+        if (e.keyCode === 13) $("#number-input").focus();
+    });
+
+    $("#number-input").keyup(e =>
+    {
+        if (e.keyCode === 13) $("#pass-input").focus();
+    });
+
+    $("#pass-input").keyup(e =>
+    {
+        if (e.keyCode === 13) createUser()
+    });
+
+
+
+
+
+
+//  NEW USER
+//  Register User
+//  Auth thing for getting token
+    $("#signup-button").click(createUser)
+
+    async function createUser(){
+        var firstname = document.querySelector("#firstname-input").value;
+        var lastname = document.querySelector("#lastname-input").value;
+        var user = document.querySelector("#user-input").value;
+        var email = document.querySelector("#email-input").value;
+        var phonenumber = document.querySelector("#number-input").value;
+        var pass = document.querySelector("#pass-input").value;
+
+        try {
+            console.log("1")
+            const createResult  = (await axios({
+                method: 'post',
+                url: 'https://api.topheinz.com/user/create',
+                headers: {
+                    'firstName': firstname,
+                    'lastName': lastname,
+                    'username': user,
+                    'email': email,
+                    'phoneNumber': phonenumber,
+                    'pass': pass,
+                    'pfp': "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                }
+            }).data);
+
+
+            console.log("2")
+            // Get user
+            const getResult = (await axios({
+                method: "get",
+                url: `${api}/auth`,
+                headers: {
+                    user: user,
+                    pass: pass
+                }
+            })).data;
+
+            console.log("3")
+            // Store success
+            const success = createResult === true && getResult !== "";
+            console.log(success ? "Account creation successful" : "Something went wrong");
+
+            console.log("4")
+            if (success)
+            {
+                // Store user details
+                localStorage["user"] = JSON.stringify((await axios({
+                    method: "get",
+                    url: `${url}users`,
+                    headers: {
+                        token: getResult
+                    }
+                })).data);
+
+                // Redirect to front page
+                window.location.replace("/");
+            }
+
+            // Unsuccessful login
+            else {
+                console.log("5");
+                document.querySelector("#incorrect").innerHTML = "Noe gikk galt";
+                console.log("6");
+            }
+
+
         }
-    };
+        catch {
+            document.querySelector("#login-status").innerHTML = "Vennligst fyll inn alle feltene";
+        }
+
+    }
