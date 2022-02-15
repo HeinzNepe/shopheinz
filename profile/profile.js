@@ -32,7 +32,7 @@ async function loadUser()
                 <p id="name-input">${user.firstName} ${user.lastName}</p>
             </div>
             <div>
-                <h3>Adress:</h3>
+                <h3>Address:</h3>
                 <p id="address-input">Coming soon</p>
             </div>
             <div>
