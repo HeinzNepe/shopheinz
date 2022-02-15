@@ -63,9 +63,9 @@ else // Log in
         let passphrase = document.querySelector("#password-input").value;
 
         const result = (await axios({
-            method: "get",
+            method: "post",
             url: `${url}auth`,
-            headers: {
+            data: {
                 user: username,
                 pass: passphrase
             }
@@ -157,7 +157,7 @@ else // Log in
             const createResult  = (await axios({
                 method: 'post',
                 url: `${url}user/create`,
-                headers: {
+                data: {
                     'firstName': firstname,
                     'lastName': lastname,
                     'username': user,
@@ -172,9 +172,9 @@ else // Log in
 
             // Get user
             const getResult = (await axios({
-                method: "get",
+                method: "post",
                 url: `${url}auth`,
-                headers: {
+                data: {
                     user: user,
                     pass: pass
                 }
