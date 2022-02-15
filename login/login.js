@@ -45,8 +45,8 @@ else // Log in
         <div id="login-status">
         </div>
         <br>
-        <div class="horizontal center-text" id="new-user">
-        <p>New user? Sign up </p><a href="?new">here</a>
+        <div class="horizontal center-text space-around" id="new-user">
+        <p>New user? Sign up </p><a class="link" href="?new">here</a>
         </div>
     </div>
     `

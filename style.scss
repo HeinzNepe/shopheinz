@@ -59,9 +59,10 @@ body
   .rounded{border-radius: $Roundness;}
   .horizontal{display:flex;flex-direction:row;justify-content:space-between;}
   .vertical{display:flex;flex-direction:column;justify-content:space-between;}
+  .link{color:$Text-White;font-weight: bold;}
+  .space-around{justify-content:space-around !important;}
   .center-text{text-align:center;align-items: center;}
-  .red-button{background: $Dynamic-Background;border: none;padding: .5rem 1rem;border-radius: $Rounderness;color: $Text-White;box-sizing: border-box;
-}
+  .red-button{background: $Dynamic-Background;border: none;padding: .5rem 1rem;border-radius: $Rounderness;color: $Text-White;box-sizing: border-box;}
 
 // 2.2 Header
 

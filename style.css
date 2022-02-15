@@ -26,6 +26,15 @@ body {
   justify-content: space-between;
 }
 
+.link {
+  color: #e8eaed;
+  font-weight: bold;
+}
+
+.space-around {
+  justify-content: space-around !important;
+}
+
 .center-text {
   text-align: center;
   align-items: center;
