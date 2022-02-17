@@ -158,7 +158,7 @@ else // Displays login fields if ?new parameter is not used
 
         //  Checks if phonenumber is a number, if not returns error
         if (isNaN(phonenumber)) {
-            document.querySelector("#login-status").innerHTML = "The phonenumber needs to be a number!";
+            document.querySelector("#login-status").innerHTML = "The phonenumber can only be numbers!";
         }
         else {
             // Tries creating user with the variables
