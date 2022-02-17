@@ -1,11 +1,13 @@
 const url = "https://api.topheinz.com/"
 let products
 
+// Fetches products, puts in list
 async function fetchProducts()
 {
     products = (await axios.get(url+`products/all`)).data;
 }
 
+// Takes fetched products and filters according to search field. Then adds card in product listing
 function filterProducts()
 {
     let prodFiltered = products.filter(p => p.name.toLowerCase().includes(document.querySelector("#search").value))

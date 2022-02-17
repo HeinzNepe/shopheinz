@@ -1,6 +1,7 @@
 const url = "https://api.topheinz.com/"
 
 
+// Inputs registering fields if argument ?new is used
 if (window.location.search === "?new") // Sign up
 {
     document.title = "ShopHeinz - Signup Page";
@@ -30,7 +31,7 @@ if (window.location.search === "?new") // Sign up
         </div>
     `
 }
-else // Log in
+else // Displays login fields if ?new parameter is not used
 {
     document.querySelector("#login-page").innerHTML = ` 
     <h1>Login page</h1>
@@ -54,11 +55,12 @@ else // Log in
 
 
 //  LOGIN
-//  Auth thing for getting token
+//  Runs the auth function if login button is pressed
     $("#login-button").click(auth)
 
 //  Gets value from the input fields
     async function auth(){
+        // Sets username and password to respective fields, then authenticates on the API
         let username = document.querySelector("#username-input").value;
         let passphrase = document.querySelector("#password-input").value;
 
@@ -71,7 +73,7 @@ else // Log in
             }
         })).data;
 
-        // If result isn't empty, saves to localstorage
+        // If result isn't empty, saves token to localstorage and redirects to main page
         if (result !== "") {
             localStorage["token"] = result
             document.querySelector("#login-status").innerHTML=``
@@ -80,6 +82,7 @@ else // Log in
             setTimeout(window.location.replace("/"),1)
 
         }
+        // If nothing is returned, informs that login failed
         else {
             document.querySelector("#login-status").innerHTML=`
             <p>Login failed! Try again</p>`
@@ -89,7 +92,7 @@ else // Log in
 
 
 
-// Input field listeners
+// Input field listeners for moving to next thing
     // Login sec
     $("#username-input").keyup(e =>
     {
@@ -140,11 +143,12 @@ else // Log in
 
 
 //  NEW USER
-//  Register User
-//  Auth thing for getting token
+
+    //  Event listener for creating the user
     $("#signup-button").click(createUser)
 
     async function createUser(){
+        //  Get the values from respective fields
         let firstname = document.querySelector("#firstname-input").value;
         let lastname = document.querySelector("#lastname-input").value;
         let user = document.querySelector("#user-input").value;
@@ -152,6 +156,8 @@ else // Log in
         let phonenumber = document.querySelector("#number-input").value;
         let pass = document.querySelector("#pass-input").value;
 
+
+        // Tries creating user with the variables
         try {
 
             const createResult  = (await axios({
@@ -170,7 +176,7 @@ else // Log in
 
 
 
-            // Get user
+            // Get user that was just created
             const getResult = (await axios({
                 method: "post",
                 url: `${url}auth`,
@@ -185,6 +191,7 @@ else // Log in
             console.log(success ? "Account creation successful" : "Something went wrong");
             console.log(createResult , getResult)
 
+            //  If succeeded, get User ID
             if (success)
             {
                 // Store user details
@@ -196,6 +203,7 @@ else // Log in
                     }
                 })).data)
 
+                //  Saved UID and token to localstorage
                 localStorage["uid"] = parseInt(user.id)
                 localStorage["token"] = user.credentials.token
 
@@ -205,13 +213,13 @@ else // Log in
 
             // Unsuccessful login
             else {
-                document.querySelector("#incorrect").innerHTML = "Noe gikk galt";
+                document.querySelector("#incorrect").innerHTML = "Something went wrong";
             }
 
 
         }
         catch {
-            document.querySelector("#login-status").innerHTML = "Vennligst fyll inn alle feltene";
+            document.querySelector("#login-status").innerHTML = "Please fill all fields";
         }
 
     }

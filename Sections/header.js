@@ -2,7 +2,7 @@ const hurl = "https://api.topheinz.com/"
 
 token = localStorage["token"];
 
-
+// Loads user preview in the header
 async function loadUser() {
     const user = ((await axios({
         method: "get",
@@ -18,7 +18,7 @@ async function loadUser() {
 
 }
 
-
+// Only loads if token
 if(token)
 {
     loadUser()

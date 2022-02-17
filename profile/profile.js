@@ -18,14 +18,14 @@ async function loadUser()
     var uid = parseInt(user.id)
     localStorage["uid"] = uid;
 
-    // Gets recent orders from user into JSON
+    // Gets recent orders from user into JSON, reverses them and grabs the address from the last order
     const orders = (await axios.get( url+`order/user?id=`+uid)).data.reverse();
     adresse = orders[0].address.addressLine
 
 
 
 
-    //  Filling in HTML stuff
+    //  Fills inn the pfp and the username
     document.querySelector("#img-div").innerHTML = `
                     <!--suppress CheckImageSize -->
                     <img class="img" alt="ProfilePicture" width="100" src="${user.pfp}">
@@ -34,6 +34,7 @@ async function loadUser()
                         <p id="id-input">${user.credentials.username}</p>
                     </div>`
 
+    // Fills in full name, last address, phonenumber and email
     document.querySelector("#bottom-area").innerHTML = `
             <div>
                 <h3>Full name:</h3>
@@ -54,7 +55,7 @@ async function loadUser()
 
 
 
-
+    //filters orders so that if there are no orders, it doesnt display
     if(orders.length !== 0){
 
 
@@ -108,7 +109,7 @@ $("#logout-button").click(()=>{
 })
 
 
-//Run function
+// Loads the entire page :-)
 loadUser();
 
 
