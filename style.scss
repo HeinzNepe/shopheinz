@@ -63,6 +63,9 @@ body
   .space-around{justify-content:space-around !important;}
   .center-text{text-align:center;align-items: center;}
   .red-button{background: $Dynamic-Background;border: none;padding: .5rem 1rem;border-radius: $Rounderness;color: $Text-White;box-sizing: border-box;}
+  .input{color:$Faded-Text-White;background-color: $Card2-Background;border:$Card2-Background;padding: 1rem;border-radius: $Rounderness;}
+  .margin{margin: 2rem;}
+  .zero{margin:0;padding: 0;}
 
 // 2.2 Header
 
@@ -278,28 +281,11 @@ body
       margin:2rem;
       gap:0.2rem;
 
-      label > input
-      {
-        color:$Faded-Text-White;
-        background-color: $Card2-Background;
-        border:$Card2-Background;
-        padding: 1rem;
-        border-radius: $Rounderness;
-      }
-
     }
     #signup-area
     {
       margin:2rem;
       gap:0.2rem;
-      label > input
-      {
-        color:$Faded-Text-White;
-        background-color: $Card2-Background;
-        border:$Card2-Background;
-        padding: 1rem;
-        border-radius: $Rounderness;
-      }
     }
   }
 

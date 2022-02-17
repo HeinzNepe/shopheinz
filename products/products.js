@@ -1,10 +1,18 @@
 const url = "https://api.topheinz.com/"
+let products
 
-async function loadProducts()
+async function fetchProducts()
 {
-    const products = (await axios.get(url+`products/all`)).data;
+    products = (await axios.get(url+`products/all`)).data;
+}
 
-    for (const product of products) {
+function filterProducts()
+{
+    let prodFiltered = products.filter(p => p.name.toLowerCase().includes(document.querySelector("#search").value))
+
+    document.querySelector("#products-list").innerHTML = ''
+
+    for (const product of prodFiltered) {
         console.log(product)
         document.querySelector("#products-list").innerHTML += `
             <div class="card rounded">
@@ -20,7 +28,13 @@ async function loadProducts()
     }
 }
 
-loadProducts();
+fetchProducts().then(() => filterProducts());
+
+
+$("#search").keyup(() => {
+    filterProducts();
+})
+
 
 
 
