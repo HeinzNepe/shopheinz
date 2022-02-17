@@ -1,3 +1,21 @@
+/*    TABLE OF CONTENTS
+   1  Setup
+   1.1 Imports
+   1.2 Variables
+   2  Reusable sections
+    2.1 Utility classes
+    2.2 Header
+    2.3 Flex for content
+   3  Site content
+    3.1 Index
+    3.2 Products
+    3.3 About us
+    3.4 Log in
+    3.5 Buy
+   4  Profile related
+
+
+================================*/
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
 * {
   font-family: "Noto Sans", sans-serif;
@@ -38,6 +56,15 @@ body {
 .center-text {
   text-align: center;
   align-items: center;
+}
+
+.bordered-button {
+  background: #c33e37;
+  border: 1px solid #e8eaed;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: #e8eaed;
+  box-sizing: border-box;
 }
 
 .red-button {
