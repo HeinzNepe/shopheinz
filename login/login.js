@@ -153,73 +153,81 @@ else // Displays login fields if ?new parameter is not used
         let lastname = document.querySelector("#lastname-input").value;
         let user = document.querySelector("#user-input").value;
         let email = document.querySelector("#email-input").value;
-        let phonenumber = document.querySelector("#number-input").value;
+        let phonenumber = parseInt(document.querySelector("#number-input").value);
         let pass = document.querySelector("#pass-input").value;
 
-
-        // Tries creating user with the variables
-        try {
-
-            const createResult  = (await axios({
-                method: 'post',
-                url: `${url}user/create`,
-                data: {
-                    'firstName': firstname,
-                    'lastName': lastname,
-                    'username': user,
-                    'email': email,
-                    'phoneNumber': phonenumber,
-                    'pass': pass,
-                    'pfp': "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
-                }
-            })).data;
+        //  Checks if phonenumber is a number, if not returns error
+        if (isNaN(phonenumber)) {
+            document.querySelector("#login-status").innerHTML = "The phonenumber needs to be a number!";
+        }
+        else {
+            // Tries creating user with the variables
+            try {
+                document.querySelector("#login-status").innerHTML = '';
 
 
-
-            // Get user that was just created
-            const getResult = (await axios({
-                method: "post",
-                url: `${url}auth`,
-                data: {
-                    user: user,
-                    pass: pass
-                }
-            })).data;
-
-            // Store success
-            const success = createResult === true && getResult !== "";
-            console.log(success ? "Account creation successful" : "Something went wrong");
-            console.log(createResult , getResult)
-
-            //  If succeeded, get User ID
-            if (success)
-            {
-                // Store user details
-                const user = ((await axios({
-                    method: "get",
-                    url: `${url}user/user`,
-                    headers: {
-                        token: getResult
+                const createResult  = (await axios({
+                    method: 'post',
+                    url: `${url}user/create`,
+                    data: {
+                        'firstName': firstname,
+                        'lastName': lastname,
+                        'username': user,
+                        'email': email,
+                        'phoneNumber': phonenumber,
+                        'pass': pass,
+                        'pfp': "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
                     }
-                })).data)
+                })).data;
 
-                //  Saved UID and token to localstorage
-                localStorage["uid"] = parseInt(user.id)
-                localStorage["token"] = user.credentials.token
 
-                // Redirect to front page
-                window.location.replace("/");
+
+                // Get user that was just created
+                const getResult = (await axios({
+                    method: "post",
+                    url: `${url}auth`,
+                    data: {
+                        user: user,
+                        pass: pass
+                    }
+                })).data;
+
+                // Store success
+                const success = createResult === true && getResult !== "";
+                console.log(success ? "Account creation successful" : "Something went wrong");
+                console.log(createResult , getResult)
+
+                //  If succeeded, get User ID
+                if (success)
+                {
+                    // Store user details
+                    const user = ((await axios({
+                        method: "get",
+                        url: `${url}user/user`,
+                        headers: {
+                            token: getResult
+                        }
+                    })).data)
+
+                    //  Saved UID and token to localstorage
+                    localStorage["uid"] = parseInt(user.id)
+                    localStorage["token"] = user.credentials.token
+
+                    // Redirect to front page
+                    window.location.replace("/");
+                }
+
+                // Unsuccessful login
+                else {
+                    document.querySelector("#login-status").innerHTML = "Something went wrong";
+                }
+
+
             }
-
-            // Unsuccessful login
-            else {
-                document.querySelector("#incorrect").innerHTML = "Something went wrong";
+            catch {
+                document.querySelector("#login-status").innerHTML = "Please fill all fields";
             }
-
-
         }
-        catch {
-            document.querySelector("#login-status").innerHTML = "Please fill all fields";
-        }
+
 
     }
