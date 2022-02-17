@@ -1,6 +1,7 @@
 const url = "https://api.topheinz.com/"
 
 let token = localStorage['token']
+let adresse;
 
 // Function loads the entire profile page.
 async function loadUser()
@@ -17,8 +18,15 @@ async function loadUser()
     var uid = parseInt(user.id)
     localStorage["uid"] = uid;
 
-        //  Filling in HTML stuff
-        document.querySelector("#img-div").innerHTML = `
+    // Gets recent orders from user into JSON
+    const orders = (await axios.get( url+`order/user?id=`+uid)).data.reverse();
+    adresse = orders[0].address.addressLine
+
+
+
+
+    //  Filling in HTML stuff
+    document.querySelector("#img-div").innerHTML = `
                     <!--suppress CheckImageSize -->
                     <img class="img" alt="ProfilePicture" width="100" src="${user.pfp}">
                     <div class="column" id="name">
@@ -26,14 +34,14 @@ async function loadUser()
                         <p id="id-input">${user.credentials.username}</p>
                     </div>`
 
-        document.querySelector("#bottom-area").innerHTML = `
+    document.querySelector("#bottom-area").innerHTML = `
             <div>
                 <h3>Full name:</h3>
                 <p id="name-input">${user.firstName} ${user.lastName}</p>
             </div>
             <div>
-                <h3>Address:</h3>
-                <p id="address-input">Coming soon</p>
+                <h3>Last address:</h3>
+                <p id="address-input">${adresse}</p>
             </div>
             <div>
                 <h3>Phone:</h3>
@@ -44,8 +52,8 @@ async function loadUser()
                 <p id="mail-input">${user.email}</p>
             </div>`
 
-    // Gets recent orders from user into JSON
-    const orders = (await axios.get( url+`order/user?id=`+uid)).data;
+
+
 
     if(orders.length !== 0){
 
@@ -81,7 +89,8 @@ async function loadUser()
             </div>
         </div>
         <hr>
-        `}
+        `
+        }
     }
     else
     {
