@@ -57,6 +57,10 @@ body {
   border-radius: 0.5rem;
 }
 
+.fit-content {
+  width: fit-content;
+}
+
 .margin {
   margin: 2rem;
 }

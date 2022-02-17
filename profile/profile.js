@@ -47,9 +47,16 @@ async function loadUser()
     // Gets recent orders from user into JSON
     const orders = (await axios.get( url+`order/user?id=`+uid)).data;
 
-    //  Recent orders displayed at bottom
-    for (const order of orders) {
-        document.querySelector("#order-section").innerHTML += `
+    if(orders.length !== 0){
+
+
+        document.querySelector("#order-section").innerHTML=`        
+        <h1 class="center-text">Recent orders:</h1><hr>`
+
+
+        //  Recent orders displayed at bottom
+        for (const order of orders) {
+            document.querySelector("#order-section").innerHTML += `
             <div class="order">
             <div>
                 <h3>Ordernr:</h3>
@@ -74,9 +81,23 @@ async function loadUser()
             </div>
         </div>
         <hr>
-        `
+        `}
     }
+    else
+    {
+        document.querySelector("#order-section").innerHTML=`        
+        <h1 class="center-text">Once you've ordered from us, they'll show up here!</h1>`
+    }
+
 }
+
+
+//  Logout
+$("#logout-button").click(()=>{
+    localStorage.clear()
+    window.location.replace("/");
+})
+
 
 //Run function
 loadUser();

@@ -21,7 +21,7 @@ function filterProducts()
                 <p>${product.stock} på lager</p>
                 <div class="horizontal">
                     <p><i>${product.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kr</i></p>
-                    <a href="#">Order</a>
+                    <a href="#">Add to cart</a>
                 </div>
             </div>
         `

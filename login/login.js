@@ -36,10 +36,10 @@ else // Log in
     <h1>Login page</h1>
      <div class="vertical" id="login-area">
         <label>
-            <input id="username-input" placeholder="Username">
+            <input class="input" id="username-input" placeholder="Username">
         </label>
         <label>
-            <input id="password-input" placeholder="Password" type="password">
+            <input class="input" id="password-input" placeholder="Password" type="password">
         </label>
         <button class="red-button" id="login-button">Login</button>
         <div id="login-status">

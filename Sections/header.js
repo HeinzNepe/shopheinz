@@ -13,13 +13,9 @@ async function loadUser() {
     })).data)
     document.querySelector("#header-login-sec").innerHTML = `
     <a href="/profile"><img id="header-pfp" src="${user.pfp}"></a>
-    <a href="/" class="center-text" id="logout-button">Logout</a>
+    <a href="/profile">${user.firstName} ${user.lastName}</a>
     `
-    //  Logout
-    $("#logout-button").click(()=>{
-        localStorage.clear()
-        window.location.reload();
-    })
+
 }
 
 
