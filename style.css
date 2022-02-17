@@ -49,6 +49,11 @@ body {
   box-sizing: border-box;
 }
 
+.red {
+  color: #c33e37 !important;
+  text-decoration-color: #c33e37 !important;
+}
+
 .input {
   color: #9d9d9d;
   background-color: #272b34;

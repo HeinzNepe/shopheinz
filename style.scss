@@ -63,6 +63,7 @@ body
   .space-around{justify-content:space-around !important;}
   .center-text{text-align:center;align-items: center;}
   .red-button{background: $Dynamic-Background;border: none;padding: .5rem 1rem;border-radius: $Rounderness;color: $Text-White;box-sizing: border-box;}
+  .red{color:$Dynamic-Background !important;text-decoration-color:$Dynamic-Background !important;}
   .input{color:$Faded-Text-White;background-color: $Card2-Background;border:$Card2-Background;padding: 1rem;border-radius: $Rounderness;}
   .fit-content{width: fit-content;}
   .margin{margin: 2rem;}
