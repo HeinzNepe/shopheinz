@@ -88,8 +88,8 @@ async function loadUser()
                 <h3>Total price:</h3>
                 <p>${order.totalPrice} kr</p>
             </div>
-        </div>
-        <hr>
+            </div>
+            <hr>
         `
         }
     }

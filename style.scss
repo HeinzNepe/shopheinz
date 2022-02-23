@@ -118,7 +118,9 @@ body
   .red-button{background: $Dynamic-Background;border: none;padding: .5rem 1rem;border-radius: $Rounderness;color: $Text-White;box-sizing: border-box;}
   .red{color:$Dynamic-Background !important;text-decoration-color:$Dynamic-Background !important;}
   .input{color:$Faded-Text-White;background-color: $Card2-Background;border:$Card2-Background;padding: 1rem;border-radius: $Rounderness;}
+  .num-input{color:$Faded-Text-White;background-color: $Card2-Background;border:$Card2-Background;padding: 0.25rem;border-radius: $Rounderness; width: 2.5rem;}
   .fit-content{width: fit-content;}
+  .sixrem-img{object-fit:cover;width:6rem;aspect-ratio:1;border-radius: $Rounderness;margin-right: 1rem;}
   .margin{margin: 2rem;}
   .zero{margin:0;padding: 0;}
 
@@ -355,9 +357,14 @@ body
 
   #buy-page
   {
+    width: 100%;
     #cart-area
     {
-      
+      width: 80%;
+      .cart-order
+      {
+        width: 100%;
+      }
     }
   }
 
@@ -370,7 +377,7 @@ body
     {
       border-top: 1px solid $Text-White;
       width:100%;
-      margin: 5rem auto 5rem auto;
+      margin: 5rem 0 5rem 0;
     }
     #profile-sec
     {

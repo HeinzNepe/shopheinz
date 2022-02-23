@@ -49,6 +49,7 @@ function filterProducts()
                 });
             }
             localStorage["cart"] = JSON.stringify(cart);
+
         } else {
             alert("You need to be logged in to add things to cart!")
         }
