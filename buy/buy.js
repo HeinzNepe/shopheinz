@@ -1,21 +1,25 @@
 const url = "https://api.topheinz.com/"
 let cart = []
 
-cart = JSON.parse(localStorage["cart"]);
-
+//  TODO Fix loading so it loads every change
 
 // Inputs registering fields if argument ?new is used
 if (window.location.search === "?cart") // Sign up
 {
+    updatePage()
+}
+
+function updatePage()
+{
+    cart = JSON.parse(localStorage["cart"]);
+    document.querySelector("#buy-page").innerHTML = ``
     if (cart.length > 0 )
     {
         document.querySelector("#buy-page").innerHTML = `
         <section id="cart-area"><h1>Here are the products currently in your cart</h1></section>
         `
 
-
         for (const item of cart) {
-
             document.querySelector("#cart-area").innerHTML +=`
             <div class="cart-order horizontal space-around">
                 <div>
@@ -35,8 +39,8 @@ if (window.location.search === "?cart") // Sign up
                     <input class="num-input" type="number" data-cart-index="${cart.indexOf(item)}" value="${item.quantity}"/>
                 </div>
                 <div>
-                    <h3>Quantity:</h3>
-                    <p>${item.product.price * item.quantity} kr</p>
+                    <h3>Cost:</h3>
+                    <p id="itemCost">${item.product.price * item.quantity} kr</p>
                 </div>
             </div>
             <hr>
@@ -51,15 +55,18 @@ if (window.location.search === "?cart") // Sign up
     }
 }
 
+
+
+
 //  When anything with the class add-cart, it gets the id of that product from the list
 $(".num-input").change(e => {
     const chosen = cart[e.currentTarget.getAttribute("data-cart-index")];
     chosen.quantity = e.currentTarget.value;
-
     for (const item of cart) {
         if (item.product.id === chosen.product.id) {
             item.quantity = chosen.quantity;
             localStorage["cart"] = JSON.stringify(cart);
         }
     }
+    updatePage()
 })
