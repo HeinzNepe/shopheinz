@@ -1,7 +1,6 @@
 const url = "https://api.topheinz.com/"
 let cart = []
 
-//  TODO Fix loading so it loads every change
 
 // Inputs registering fields if argument ?new is used
 if (window.location.search === "?cart") // Sign up
