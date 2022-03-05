@@ -40,7 +40,7 @@ function updateCartPage()
                 </div>
                 <div>
                     <h3>Quantity:</h3>
-                    <input class="num-input" type="number" data-cart-index="${cart.indexOf(item)}" value="${item.quantity}"/>
+                    <input class="num-input" type="number" min="0" max="${item.product.stock}" data-cart-index="${cart.indexOf(item)}" value="${item.quantity}"/>
                 </div>
                 <div>
                     <h3>Cost:</h3>
@@ -62,10 +62,16 @@ function updateCartPage()
         const chosen = cart[e.currentTarget.getAttribute("data-cart-index")];
         chosen.quantity = e.currentTarget.value;
         for (const item of cart) {
+            console.log(item)
             if (item.product.id === chosen.product.id) {
                 item.quantity = chosen.quantity;
+                if (chosen.quantity === 0) {
+                    console.log("æ")
+                    cart.remove(this.getAttribute("data-cart-index"));
+                }
                 localStorage["cart"] = JSON.stringify(cart);
             }
+
         }
         updateCartPage()
     })
