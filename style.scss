@@ -131,7 +131,12 @@ $Site-Darkest-Red: rgba(122, 6, 17, 0.5);
   .sixrem-img{object-fit:cover;width:6rem;aspect-ratio:1;border-radius: $Rounderness;margin-right: 1rem;}
   .margin{margin: 2rem;}
   .zero{margin:0;padding: 0;}
-  .width100{width:100;}
+  .width25{width:25% !important;}
+  .width30{width:30% !important;}
+  .width40{width:40% !important;}
+  .width50{width:50% !important;}
+  .width50{width:60% !important;}
+  .width100{width:100% !important;}
 
 // 2.2 Header
 #header

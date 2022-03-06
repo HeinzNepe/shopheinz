@@ -157,8 +157,28 @@ body {
   padding: 0;
 }
 
+.width25 {
+  width: 25% !important;
+}
+
+.width30 {
+  width: 30% !important;
+}
+
+.width40 {
+  width: 40% !important;
+}
+
+.width50 {
+  width: 50% !important;
+}
+
+.width50 {
+  width: 60% !important;
+}
+
 .width100 {
-  width: 100;
+  width: 100% !important;
 }
 
 #header {
