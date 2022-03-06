@@ -60,15 +60,15 @@ function updateCartPage()
     //  When anything with the class add-cart, it gets the id of that product from the list
     $(".num-input").change(e => {
         const chosen = cart[e.currentTarget.getAttribute("data-cart-index")];
-        chosen.quantity = e.currentTarget.value;
+        const index = e.currentTarget.getAttribute("data-cart-index")
+        chosen.quantity = parseInt(e.currentTarget.value);
         for (const item of cart) {
-            console.log(item)
             if (item.product.id === chosen.product.id) {
                 item.quantity = chosen.quantity;
-                if (chosen.quantity === 0) {
-                    console.log("æ")
-                    cart.remove(this.getAttribute("data-cart-index"));
-                }
+                localStorage["cart"] = JSON.stringify(cart);
+            }
+            if (item.quantity === 0) {
+                cart.splice(parseInt(index), 1);
                 localStorage["cart"] = JSON.stringify(cart);
             }
 
