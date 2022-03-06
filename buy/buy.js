@@ -20,36 +20,41 @@ function updateCartPage()
     if (cart.length > 0 )
     {
         document.querySelector("#buy-page").innerHTML = `
-        <section id="cart-area"><h1>Here are the products currently in your cart</h1></section>
+        <section id="cart-area"><h1>Here are the products currently in your cart</h1>
+        <table id="cart-fill">
+        </section>
+        
+
         `
 
         for (const item of cart) {
-            document.querySelector("#cart-area").innerHTML +=`
-            <div class="cart-order horizontal space-around">
-                <div>
+            document.querySelector("#cart-fill").innerHTML +=`
+            <tr>
+                <td>
                     <img class="sixrem-img" src="${item.product.imageUrl}">
-                </div>
-                <div class="phantom"></div>
-                <div>
+                </td>
+                <td>
                     <h3>Name:</h3>
                     <p>${item.product.name}</p>
-                </div>
-                <div>
+                </td>
+                <td>
                     <h3>Description:</h3>
                     <p>${item.product.description}</p>
-                </div>
-                <div>
+                </td>
+                <td>
                     <h3>Quantity:</h3>
-                    <input class="num-input" type="number" min="0" max="${item.product.stock}" data-cart-index="${cart.indexOf(item)}" value="${item.quantity}"/>
-                </div>
-                <div>
+                    <input class="num-input " type="number" min="0" max="${item.product.stock}" data-cart-index="${cart.indexOf(item)}" value="${item.quantity}"/>
+                </td>
+                <td>
                     <h3>Cost:</h3>
                     <p id="itemCost">${(item.product.price * item.quantity).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kr</p>
-                </div>
-            </div>
-            <hr>
+                </td>
+            </tr>
             `
         }
+        document.querySelector("#cart-fill").innerHTML += `
+
+        `
     }
     else
     {
