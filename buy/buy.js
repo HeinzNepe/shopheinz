@@ -3,16 +3,14 @@
      1.1 Variables
      1.2 URL arguments
    2  updateCartPage
-     2.1 Utility classes
-     2.2 Header
-     2.3 Flex for content
-   3  Site content
-     3.1 Index
-     3.2 Products
-     3.3 About us
-     3.4 Log in
-     3.5 Buy
-   4  Profile related
+     2.1 Cart is longer than 0
+     2.2 Cart is 0
+     2.3 Event listeners
+   3
+     3.1
+     3.2
+     3.3
+   4
 
 
 ================================*/
@@ -37,6 +35,7 @@
 // 2  updateCartPage
     function updateCartPage()
     {
+        // 2.1 If cart longer than 0
         cart = JSON.parse(localStorage["cart"]);
         document.querySelector("#buy-page").innerHTML = ``
         if (cart.length > 0 )
@@ -45,10 +44,7 @@
             <section id="cart-area"><h1>Here are the products currently in your cart</h1>
             <table id="cart-fill">
             </section>
-            
-    
             `
-
             for (const item of cart) {
                 document.querySelector("#cart-fill").innerHTML +=`
                 <tr>
@@ -84,12 +80,18 @@
             </div>
             `
         }
+
+        //  2.2 If cart 0
         else
         {
             document.querySelector("#buy-page").innerHTML = `
             <h1>Your shoppingcart appears to be empty.<br> Add to your cart and come back later!</h1>
             `
         }
+
+        //  2.3 Event listeners
+
+        $("#button-shopping").click(() => window.location.replace("/products/"))
 
         //  When anything with the class add-cart, it gets the id of that product from the list
         $(".num-input").change(e => {
@@ -110,52 +112,53 @@
             updateCartPage()
         })
 
+
     }
 
 
 
 
-function updateCheckoutPage() {
-    cart = JSON.parse(localStorage["cart"]);
-    document.querySelector("#buy-page").innerHTML = ``
-    if (cart.length > 0 )
-    {
-        document.querySelector("#buy-page").innerHTML += `
-        <section id="cart-area"><h1>Here are the products currently in your cart</h1></section>
-        `
+    function updateCheckoutPage() {
+        cart = JSON.parse(localStorage["cart"]);
+        document.querySelector("#buy-page").innerHTML = ``
+        if (cart.length > 0 )
+        {
+            document.querySelector("#buy-page").innerHTML += `
+            <section id="cart-area"><h1>Here are the products currently in your cart</h1></section>
+            `
 
-        for (const item of cart) {
-            document.querySelector("#cart-area").innerHTML +=`
-            <div class="cart-order horizontal space-around">
-                <div>
-                    <img class="sixrem-img" src="${item.product.imageUrl}">
+            for (const item of cart) {
+                document.querySelector("#cart-area").innerHTML +=`
+                <div class="cart-order horizontal space-around">
+                    <div>
+                        <img class="sixrem-img" src="${item.product.imageUrl}">
+                    </div>
+                    <div class="phantom"></div>
+                    <div>
+                        <h3>Name:</h3>
+                        <p>${item.product.name}</p>
+                    </div>
+                    <div>
+                        <h3>Description:</h3>
+                        <p>${item.product.description}</p>
+                    </div>
+                    <div>
+                        <h3>Quantity:</h3>
+                        <input class="num-input" type="number" data-cart-index="${cart.indexOf(item)}" value="${item.quantity}"/>
+                    </div>
+                    <div>
+                        <h3>Cost:</h3>
+                        <p id="itemCost">${(item.product.price * item.quantity).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kr</p>
+                    </div>
                 </div>
-                <div class="phantom"></div>
-                <div>
-                    <h3>Name:</h3>
-                    <p>${item.product.name}</p>
-                </div>
-                <div>
-                    <h3>Description:</h3>
-                    <p>${item.product.description}</p>
-                </div>
-                <div>
-                    <h3>Quantity:</h3>
-                    <input class="num-input" type="number" data-cart-index="${cart.indexOf(item)}" value="${item.quantity}"/>
-                </div>
-                <div>
-                    <h3>Cost:</h3>
-                    <p id="itemCost">${(item.product.price * item.quantity).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kr</p>
-                </div>
-            </div>
-            <hr>
+                <hr>
+                `
+            }
+        }
+        else
+        {
+            document.querySelector("#buy-page").innerHTML = `
+            <h1>Your shoppingcart appears to be empty.<br> Add to your cart and come back later!</h1>
             `
         }
     }
-    else
-    {
-        document.querySelector("#buy-page").innerHTML = `
-        <h1>Your shoppingcart appears to be empty.<br> Add to your cart and come back later!</h1>
-        `
-    }
-}
