@@ -3,16 +3,14 @@
      1.1 Variables
      1.2 URL arguments
    2  updateCartPage
-     2.1 Utility classes
-     2.2 Header
-     2.3 Flex for content
-   3  Site content
-     3.1 Index
-     3.2 Products
-     3.3 About us
-     3.4 Log in
-     3.5 Buy
-   4  Profile related
+     2.1 Cart is longer than 0
+     2.2 Cart is 0
+     2.3 Event listeners
+   3
+     3.1
+     3.2
+     3.3
+   4
 
 
 ================================*/
@@ -38,6 +36,7 @@
 // 2  updateCartPage
     function updateCartPage()
     {
+        // 2.1 If cart longer than 0
         cart = JSON.parse(localStorage["cart"]);
         document.querySelector("#buy-page").innerHTML = ``
         if (cart.length > 0 )
@@ -85,12 +84,18 @@
             </div>
             `
         }
+
+        //  2.2 If cart 0
         else
         {
             document.querySelector("#buy-page").innerHTML = `
             <h1>Your shoppingcart appears to be empty.<br> Add to your cart and come back later!</h1>
             `
         }
+
+        //  2.3 Event listeners
+
+        $("#button-shopping").click(() => window.location.replace("/products/"))
 
         //  When anything with the class add-cart, it gets the id of that product from the list
         $(".num-input").change(e => {
@@ -113,6 +118,7 @@
         $("#button-checkout").click( e => {
             window.location.replace("/buy/?checkout")
         })
+
 
     }
 
