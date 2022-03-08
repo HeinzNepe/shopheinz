@@ -130,6 +130,7 @@ $Site-Darkest-Red: rgba(122, 6, 17, 0.5);
   .fit-content{width: fit-content;}
   .sixrem-img{object-fit:cover;width:6rem;aspect-ratio:1;border-radius: $Rounderness;margin-right: 1rem;}
   .margin{margin: 2rem;}
+  .lessmargin{margin: 1rem;}
   .zero{margin:0;padding: 0;}
   .width25{width:25% !important;}
   .width30{width:30% !important;}
@@ -378,13 +379,7 @@ $Site-Darkest-Red: rgba(122, 6, 17, 0.5);
       {
         width: 100%;
       }
-      input
-      {
-        padding-top: 0.25rem;
-        margin-top: 0px;
-        margin-bottom: 14.5px;
-        height: 16px;
-      }
+
     }
     table
     {

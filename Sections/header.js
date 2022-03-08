@@ -1,6 +1,7 @@
 const hurl = "https://api.topheinz.com/"
 
 token = localStorage["token"];
+user = localStorage["user"]
 
 // Loads user preview in the header
 async function loadUser() {
@@ -15,7 +16,7 @@ async function loadUser() {
     <a href="/profile"><img id="header-pfp" src="${user.pfp}"></a>
     <a href="/profile">${user.firstName} ${user.lastName}</a>
     `
-
+    localStorage["user"] = JSON.stringify(user);
 }
 
 // Only loads if token

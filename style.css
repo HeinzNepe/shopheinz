@@ -152,6 +152,10 @@ body {
   margin: 2rem;
 }
 
+.lessmargin {
+  margin: 1rem;
+}
+
 .zero {
   margin: 0;
   padding: 0;
@@ -346,12 +350,6 @@ body {
 }
 #buy-page #cart-area .cart-order {
   width: 100%;
-}
-#buy-page #cart-area input {
-  padding-top: 0.25rem;
-  margin-top: 0px;
-  margin-bottom: 14.5px;
-  height: 16px;
 }
 #buy-page table {
   width: 100%;

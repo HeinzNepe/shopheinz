@@ -8,25 +8,26 @@ if (window.location.search === "?new") // Sign up
     document.querySelector("#login-page").innerHTML = `
      <h1>Signup page</h1>
         <div class="vertical" id="signup-area">
-        <label>
-            <input class="input" id="firstname-input" placeholder="First name">
-        </label>
-         <label>
-            <input class="input" id="lastname-input" placeholder="Last name">
-        </label>
-        <label>
-            <input class="input" id="user-input" placeholder="Username">
-        </label>
-        <label>
-            <input class="input" id="email-input" placeholder="Email">
-        </label>
-        <label>
-            <input class="input" id="number-input" placeholder="Phone number">
-        </label>
-        <label>
-            <input class="input" id="pass-input" placeholder="Password" type="password">
-        </label>
-        <button class="red-button" id="signup-button">Login</button>
+            <label>
+                <input class="input" id="firstname-input" placeholder="First name">
+            </label>
+             <label>
+                <input class="input" id="lastname-input" placeholder="Last name">
+            </label>
+            <label>
+                <input class="input" id="user-input" placeholder="Username">
+            </label>
+            <label>
+                <input class="input" id="email-input" placeholder="Email">
+            </label>
+            <label>
+                <input class="input" id="number-input" placeholder="Phone number">
+            </label>
+            <label>
+                <input class="input" id="pass-input" placeholder="Password" type="password">
+            </label>
+            <button class="red-button" id="signup-button">Login</button>
+        </div>
         <div id="login-status">
         </div>
     `
