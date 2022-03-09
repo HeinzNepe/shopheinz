@@ -6,7 +6,7 @@
      2.1 Cart is longer than 0
      2.2 Cart is 0
      2.3 Event listeners
-   3
+   3  updateCheckoutPage
      3.1
      3.2
      3.3
@@ -25,11 +25,13 @@
     // Inputs registering fields if argument ?new is used
     if (window.location.search === "?cart") // Sign up
     {
+        document.title = "ShopHeinz - Cart";
         updateCartPage()
     }
 
     if (window.location.search === "?checkout") // Sign up
     {
+        document.title = "ShopHeinz - Checkout";
         updateCheckoutPage()
     }
 
@@ -125,6 +127,7 @@
 
 
 
+//3  updateCheckoutPage
 
 function updateCheckoutPage() {
     cart = JSON.parse(localStorage["cart"]);
@@ -132,6 +135,7 @@ function updateCheckoutPage() {
     if (cart.length > 0 )
     {
 
+        // 3.1 Input fields
         document.querySelector("#buy-page").innerHTML = `
             <section id="cart-area"><h1>Here are the products currently in your cart</h1>
             <div class="vertical center-text" id="order-input-area">
@@ -150,7 +154,7 @@ function updateCheckoutPage() {
             </section>
             `
 
-
+        // 3.2 Dynamic user laod
         for (const item of cart) {
             totalprice = totalprice + item.quantity * item.product.price;
             document.querySelector("#cart-fill").innerHTML +=`
@@ -178,7 +182,8 @@ function updateCheckoutPage() {
                 `
         }
         document.querySelector("#buy-page").innerHTML += `
-              <p>${totalprice}</p>
+              <h3>Total price:</h3>
+              <p>${totalprice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kr</p>
             `
     }
     else

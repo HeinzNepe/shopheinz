@@ -26,8 +26,10 @@
     <section id="cards">
         <div class="Item-row" id="card1">
             <div class="text-box">
-                <h1>Welcome!</h1>
-                <p>Welcome to shopheinz! This site is a project where i explore how to make databases that can handle orders, users and delivery. To make the connection to the database, im using an API that i wrote myself along with some friends.</p>
+                <h1>Disclaimer!</h1>
+                <p>On this site, i save data regarding the fictional orders made and all personal information entered.
+                All passwords entered are hashed before storage, meaning anyone with access to the database cannot see
+                the passwords. </p>
                 <br>
                 <p>Enjoy!</p>
             </div>
@@ -35,14 +37,18 @@
         </div>
         <div class="Item-row" id="card2">
             <div class="text-box">
-                <h1>Products</h1>
-                <p>The products i offer on this site will be grabbed from somewhere else and not really purchesable. For now, this entire site is just for me to test and prove to myself (and my teachers) that i can make this.</p>
+                <h1>Introduction</h1>
+                <p>Welcome to shopheinz! This site is a project where i explore how to make databases that can handle orders,
+                    users and delivery. To make the connection to the database, im using an API that i wrote myself along
+                    with some friends.</p>
             </div>
             <img src="/img/products/hammer.jpg" width="128" alt="Hammer">
         </div>
     </section>
-
+    <div id="footer-pre"></div>
 </section>
+
+
 
 <!-- Import JQuery -->
 <script crossorigin="anonymous" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -52,6 +58,7 @@
 
 <!-- Load Header -->
 <script>console.log("Header Loaded");$("#header-pre").load("/Sections/header.html");</script>
+<script>console.log("Footer Loaded");$("#footer-pre").load("/Sections/footer.html");</script>
 
 </body>
 </html>
