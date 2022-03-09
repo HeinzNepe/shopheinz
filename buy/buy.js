@@ -18,7 +18,8 @@
 // 1.1 Variables
     const url = "https://api.topheinz.com/"
     let cart = []
-    let totalprice
+    let totalprice = 0
+    let user = JSON.parse(localStorage["user"])
 
 // 1.2 URL arguments
     // Inputs registering fields if argument ?new is used
@@ -179,12 +180,6 @@ function updateCheckoutPage() {
         document.querySelector("#buy-page").innerHTML += `
               <p>${totalprice}</p>
             `
-        document.querySelector("#buy-page").innerHTML += `
-            <div class="horizontal center-text width30">
-                <button class="red-button width40" id="button-shopping">Continue shopping</button>
-                <button class="red-button width40" id="button-checkout">Go to checkout</button>
-            </div>
-            `
     }
     else
     {
@@ -212,4 +207,106 @@ function updateCheckoutPage() {
         updateCartPage()
     })
 
+    $("#purchase-button").click(e => {
+        sendOrder()
+    })
+}
+
+//Creates address
+async function createAddress(){
+    // Create address to be used in the order
+    let Address = document.querySelector("#AddressLine-input").value;
+    let PostalNumber = document.querySelector("#postalnumber-input").value;
+    let Country = document.querySelector("#country-input").value;
+
+    const result = (await axios({
+        method: "post",
+        url: `${url}order/new/address`,
+        data: {
+            AddressLine : Address,
+            PostalNumber : parseInt(PostalNumber),
+            Country : Country
+        }
+    })).data;
+
+    // If result isn't empty, saves token to localstorage and redirects to main page
+    if (result !== 0) {
+        localStorage["aid"] = result
+        console.log("Create address success")
+        // noinspection JSVoidFunctionReturnValueUsed
+
+    }
+    // If nothing is returned, informs that login failed
+    else {
+        console.log("Create address failed!")
+    }
+}
+
+//Create order
+async function createOrder(){
+    // Create address to be used in the order
+    let user = JSON.parse(localStorage["user"])
+    let uid = user.id
+    let Address = localStorage["aid"];
+
+    const result = (await axios({
+        method: "post",
+        url: `${url}order/new/order`,
+        data: {
+            UserId : uid,
+            AddressId : Address,
+            TotalPrice : totalprice
+        }
+    })).data;
+
+    // If result isn't empty, saves token to localstorage and redirects to main page
+    if (result !== 0) {
+        localStorage["oid"] = result
+        console.log("Create order success")
+        // noinspection JSVoidFunctionReturnValueUsed
+    }
+    // If nothing is returned, informs that login failed
+    else {
+        console.log("Create order failed!")
+    }
+}
+
+//Add product to order
+async function addProductsOrder(){
+    // Create address to be used in the order
+    let user = JSON.parse(localStorage["user"])
+    let uid = user.id
+    let oid = localStorage["oid"]
+    let cart = JSON.parse(localStorage["cart"])
+    let Address = localStorage["aid"];
+
+    for (const item of cart) {
+        const result = (await axios({
+            method: "post",
+            url: `${url}order/link`,
+            data: {
+                OrderId : oid,
+                ProductId : item.product.id,
+                Quantity : item.quantity
+            }
+        })).data;
+
+        // If result isn't empty, saves token to localstorage and redirects to main page
+        if (result === true) {
+            console.log("Product " + item.product.name + " added")
+            // noinspection JSVoidFunctionReturnValueUsed
+
+        }
+        // If nothing is returned, informs that login failed
+        else {
+            console.log("Create order failed!")
+        }
+    }
+}
+
+//Function to do it all in order
+async function sendOrder(){
+        await (createAddress())
+        await (createOrder())
+        await (addProductsOrder())
 }
