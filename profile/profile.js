@@ -168,9 +168,3 @@ $("#delete-button").click(()=>{
 
 // Loads the entire page :-)
 loadUser();
-
-
-
-
-
-
