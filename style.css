@@ -33,6 +33,7 @@ hr {
 }
 
 body {
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   color: #e8eaed;

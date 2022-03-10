@@ -2,6 +2,7 @@ const url = "https://api.topheinz.com/"
 
 let token = localStorage['token']
 let adresse;
+let orderids = [];
 
 // Function loads the entire profile page.
 async function loadUser()
@@ -18,9 +19,17 @@ async function loadUser()
     var uid = parseInt(user.id)
     localStorage["uid"] = uid;
 
+    localStorage["user"] = JSON.stringify(user)
+
     // Gets recent orders from user into JSON, reverses them and grabs the address from the last order
     const orders = (await axios.get( url+`order/user?id=`+uid)).data.reverse();
-    adresse = orders[0].address.addressLine
+    if(orders.length > 0) {
+        adresse = orders[0].address.addressLine
+    }
+    else{
+        adresse = "No orders yet"
+    }
+
 
 
 
@@ -65,6 +74,7 @@ async function loadUser()
 
         //  Recent orders displayed at bottom
         for (const order of orders) {
+            orderids.push(order.id)
             document.querySelector("#order-section").innerHTML += `
             <div class="order">
             <div>
@@ -102,11 +112,58 @@ async function loadUser()
 }
 
 
+
+// Function to delete a user
+async function deleteUser() {
+    let username = window.prompt("Enter your username (NOTE this will permanently delete your user): ");
+
+    const userjs = JSON.parse(localStorage["user"])
+
+
+    // Tries given commands and catches the errors if any occur
+    if(username === userjs.credentials.username)
+    {
+        //  Deletes all of the orders
+        for (const orderid of orderids) {
+            try {
+                await axios({
+                    method: 'delete',
+                    url: url + 'order/cancel?orderId=' + parseInt(orderid),
+                })
+            } catch {
+                console.log("Could not delete order");
+            }
+        }
+
+        try {
+            // Deletes the user
+            await axios({
+                method: 'delete',
+                url: url + 'user/delete',
+                data: {
+                    Username:username
+                }
+            });
+
+        } catch {
+            console.log("Could not delete user");
+        }
+    }
+    localStorage.clear()
+    window.location.replace("/");
+}
+
 //  Logout
 $("#logout-button").click(()=>{
     localStorage.clear()
     window.location.replace("/");
 })
+
+//  Delete user
+$("#delete-button").click(()=>{
+    deleteUser()
+})
+
 
 
 // Loads the entire page :-)
