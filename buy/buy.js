@@ -7,10 +7,13 @@
      2.2 Cart is 0
      2.3 Event listeners
    3  updateCheckoutPage
-     3.1
-     3.2
-     3.3
-   4
+     3.1 Input fields
+     3.2 Dynamic user load
+     3.3 Event listeners
+   4  Send with API
+     4.1 createAddress
+     4.2 createOrder
+     4.3 addProductsOrder
 
 
 ================================*/
@@ -56,7 +59,7 @@
             
     
             `
-
+            // For every item, print HTML
             for (const item of cart) {
                 document.querySelector("#cart-fill").innerHTML +=`
                 <tr>
@@ -82,9 +85,12 @@
                 </tr>
                 `
             }
+            // End table after loop
             document.querySelector("#cart-fill").innerHTML += `
                </table>
             `
+
+            // Adds buttons on the back
             document.querySelector("#buy-page").innerHTML += `
             <div class="horizontal center-text width30">
                 <button class="red-button width40" id="button-shopping">Continue shopping</button>
@@ -166,7 +172,7 @@ function updateCheckoutPage() {
             </section>
             `
 
-        // 3.2 Dynamic user laod
+        // 3.2 Dynamic user load
         for (const item of cart) {
             totalprice = totalprice + item.quantity * item.product.price;
             document.querySelector("#cart-fill").innerHTML +=`
@@ -208,6 +214,7 @@ function updateCheckoutPage() {
         }
     }
 
+// 3.3 Event Listeners
     //  When anything with the class add-cart, it gets the id of that product from the list
     $(".num-input").change(e => {
         const chosen = cart[e.currentTarget.getAttribute("data-cart-index")];
@@ -232,6 +239,8 @@ function updateCheckoutPage() {
     })
 }
 
+
+// 4.1 createAddress
 //Creates address
 async function createAddress(){
     // Create address to be used in the order
@@ -263,6 +272,8 @@ async function createAddress(){
     }
 }
 
+
+// 4.2 createOrder
 //Create order
 async function createOrder(){
     // Create address to be used in the order
@@ -293,14 +304,14 @@ async function createOrder(){
     }
 }
 
+
+
+//  4.3 addProductsOrder
 //Add product to order
 async function addProductsOrder(){
     // Create address to be used in the order
-    let user = JSON.parse(localStorage["user"])
-    let uid = user.id
     let oid = localStorage["oid"]
     let cart = JSON.parse(localStorage["cart"])
-    let Address = localStorage["aid"];
 
     for (const item of cart) {
         try {
