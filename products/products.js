@@ -37,7 +37,7 @@ function filterProducts()
             //  Adds product based on chosen.id, increases the quantity. Then sets saved to true
             for (const product of cart) {
                 if (saved === false && product.product.id === chosen.id) {
-                    if(chosen.quantity < product.product.quantity)
+                    if(product.quantity < product.product.stock)
                     {
                         product.quantity++;
                     }

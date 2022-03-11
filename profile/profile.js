@@ -155,8 +155,7 @@ async function deleteUser() {
 
 //  Logout
 $("#logout-button").click(()=>{
-    localStorage.clear()
-    window.location.replace("/");
+    logout()
 })
 
 //  Delete user

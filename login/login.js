@@ -6,6 +6,8 @@ if (window.location.search === "?new") // Sign up
 {
     document.title = "ShopHeinz - Signup Page";
     document.querySelector("#login-page").innerHTML = `
+    <a class="link" href="/GDPR"><h3>GDPR</h3></a>
+    <p class="ch70">By signing up, you agree to the storage of information inputted. Read more <a class="link" href="/GDPR">here</a></p>
      <h1>Signup page</h1>
         <div class="vertical" id="signup-area">
             <label>

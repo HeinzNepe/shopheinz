@@ -16,10 +16,12 @@
 ================================*/
 
 // 1.1 Variables
-    const url = "https://api.topheinz.com/"
-    let cart = []
-    let totalprice = 0
-    let user = JSON.parse(localStorage["user"])
+    const url = "https://api.topheinz.com/";
+    token = localStorage["token"] || "";
+    let cart = [];
+    let totalprice = 0;
+    let user = JSON.parse(localStorage["user"]);
+    let error = 0;
 
 // 1.2 URL arguments
     // Inputs registering fields if argument ?new is used
@@ -39,8 +41,11 @@
 // 2  updateCartPage
     function updateCartPage()
     {
+
+            cart = JSON.parse(localStorage.getItem("cart"))||false;
+
+
         // 2.1 If cart longer than 0
-        cart = JSON.parse(localStorage["cart"]);
         document.querySelector("#buy-page").innerHTML = ``
         if (cart.length > 0 )
         {
@@ -87,13 +92,19 @@
             </div>
             `
         }
-
         //  2.2 If cart 0
         else
         {
-            document.querySelector("#buy-page").innerHTML = `
-            <h1>Your shoppingcart appears to be empty.<br> Add to your cart and come back later!</h1>
-            `
+            if(token.length === 0) {
+                document.querySelector("#buy-page").innerHTML = `
+                <h1>You are not logged in and your shoppingcart appears to be empty.<br>Log in, add to your cart and come back later!</h1>
+                `
+            }else
+            {
+                document.querySelector("#buy-page").innerHTML = `
+                <h1>Your shoppingcart appears to be empty.<br>Add to your cart and come back later!</h1>
+                `
+            }
         }
 
         //  2.3 Event listeners
@@ -139,18 +150,19 @@ function updateCheckoutPage() {
         document.querySelector("#buy-page").innerHTML = `
             <section id="cart-area"><h1>Here are the products currently in your cart</h1>
             <div class="vertical center-text" id="order-input-area">
-            <label>
-                <input class="input lessmargin" id="AddressLine-input" placeholder="Address Line">
-            </label>
-            <label>
-                <input class="input lessmargin" id="postalnumber-input" placeholder="Postal number">
-            </label>
-            <label>
-                <input class="input lessmargin" id="country-input" placeholder="Country">
-            </label>
-            <button class="red-button width30" id="purchase-button">Purchase</button>
+                <label>
+                    <input class="input lessmargin" id="AddressLine-input" placeholder="Address Line">
+                </label>
+                <label>
+                    <input class="input lessmargin" id="postalnumber-input" placeholder="Postal number">
+                </label>
+                <label>
+                    <input class="input lessmargin" id="country-input" placeholder="Country">
+                </label>
+                <button class="red-button width30" id="purchase-button">Purchase</button>
             </div>
-            <table id="cart-fill"></table>
+            <table id="cart-fill">   
+            </table>
             </section>
             `
 
@@ -165,10 +177,6 @@ function updateCheckoutPage() {
                     <td>
                         <h3>Name:</h3>
                         <p>${item.product.name}</p>
-                    </td>
-                    <td>
-                        <h3>Description:</h3>
-                        <p>${item.product.description}</p>
                     </td>
                     <td>
                         <h3>Quantity:</h3>
@@ -188,9 +196,16 @@ function updateCheckoutPage() {
     }
     else
     {
-        document.querySelector("#buy-page").innerHTML = `
-            <h1>Your shoppingcart appears to be empty.<br> Add to your cart and come back later!</h1>
-            `
+        if(token.length === 0) {
+            document.querySelector("#buy-page").innerHTML = `
+                <h1>You are not logged in and your shoppingcart appears to be empty.<br>Log in, add to your cart and come back later!</h1>
+                `
+        }else
+        {
+            document.querySelector("#buy-page").innerHTML = `
+                <h1>Your shoppingcart appears to be empty.<br>Add to your cart and come back later!</h1>
+                `
+        }
     }
 
     //  When anything with the class add-cart, it gets the id of that product from the list
@@ -244,6 +259,7 @@ async function createAddress(){
     // If nothing is returned, informs that login failed
     else {
         console.log("Create address failed!")
+        error++
     }
 }
 
@@ -273,6 +289,7 @@ async function createOrder(){
     // If nothing is returned, informs that login failed
     else {
         console.log("Create order failed!")
+        error++;
     }
 }
 
@@ -286,26 +303,35 @@ async function addProductsOrder(){
     let Address = localStorage["aid"];
 
     for (const item of cart) {
-        const result = (await axios({
-            method: "post",
-            url: `${url}order/link`,
-            data: {
-                OrderId : oid,
-                ProductId : item.product.id,
-                Quantity : item.quantity
+        try {
+            const result = (await axios({
+                method: "post",
+                url: `${url}order/link`,
+                data: {
+                    OrderId: oid,
+                    ProductId: item.product.id,
+                    Quantity: item.quantity
+                }
+            })).data;
+
+            // If result isn't empty, saves token to localstorage and redirects to main page
+            if (result === true) {
+                console.log("Product " + item.product.name + " added")
+                // noinspection JSVoidFunctionReturnValueUsed
+
             }
-        })).data;
-
-        // If result isn't empty, saves token to localstorage and redirects to main page
-        if (result === true) {
-            console.log("Product " + item.product.name + " added")
-            // noinspection JSVoidFunctionReturnValueUsed
-
+            // If nothing is returned, informs that login failed
+            else {
+                console.log("Create order failed!")
+                error++;
+            }
+        } catch (error) {
+        console.log("Failed adding " + item.product.name + " to cart")
+        error++;
         }
-        // If nothing is returned, informs that login failed
-        else {
-            console.log("Create order failed!")
-        }
+
+
+
     }
 }
 
@@ -314,4 +340,20 @@ async function sendOrder(){
         await (createAddress())
         await (createOrder())
         await (addProductsOrder())
+
+        if (error === 0) {
+            console.log("Order succsessfull")
+            document.querySelector("#order-input-area").innerHTML = `
+            <h3>Order succsessfull</h3>
+            `
+            localStorage["cart"] = []
+        }
+        else {
+            console.log("Something went wrong with your order!")
+            document.querySelector("#order-input-area").innerHTML = `
+            <h3>Something in your order failed!</h3>
+            <p>Check your connection to the internet</p>
+            `
+        }
+
 }
