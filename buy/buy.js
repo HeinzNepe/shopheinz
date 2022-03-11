@@ -19,7 +19,7 @@
 ================================*/
 
 // 1.1 Variables
-    const url = "https://api.topheinz.com/";
+    const url = "https://api.shop.topheinz.com/";
     token = localStorage["token"] || "";
     let cart = [];
     let totalprice = 0;

@@ -1,4 +1,4 @@
-const url = "https://api.topheinz.com/"
+const url = "https://api.shop.topheinz.com/"
 
 let token = localStorage['token']
 let adresse;

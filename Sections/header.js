@@ -1,4 +1,4 @@
-const hurl = "https://api.topheinz.com/"
+const hurl = "https://api.shop.topheinz.com/"
 
 let token = localStorage["token"] || "";
 user = localStorage["user"]

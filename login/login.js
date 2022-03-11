@@ -1,4 +1,4 @@
-const url = "https://api.topheinz.com/"
+const url = "https://api.shop.topheinz.com/"
 
 
 // Inputs registering fields if argument ?new is used
