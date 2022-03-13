@@ -24,6 +24,10 @@ function logout() {
     localStorage.clear()
     window.location.replace("/");
 }
+function emptycart() {
+    localStorage["cart"] = []
+    location.reload();
+}
 
 // Only loads if token
 if(token.length > 0)
